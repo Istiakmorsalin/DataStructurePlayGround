@@ -1,5 +1,10 @@
 package linkedList;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
+import java.text.CollationElementIterator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,9 +21,14 @@ public class LinkedListTest {
         readList(models);
         addData();
         readList(models);
+        searchData(models);
         removeData();
         readList(models);
 
+        System.out.println("Sorting started");
+        sortData(models);
+        System.out.println("Sorted LinkedList");
+        readList(models);
      }
 
      private static void initData() {
@@ -34,7 +44,7 @@ public class LinkedListTest {
     private static void addData () {
          models.add(myModel);
          models.addFirst(myModel);
-         models.add(3,myModel);
+         models.add(3, myModel);
          models.addLast(myModel);
      }
 
@@ -51,11 +61,34 @@ public class LinkedListTest {
         }
     }
 
+    private static void searchData(List<Model> models){
+        if(models.size() > 0) {
+            System.out.print("Looking for myModel");
+            models.indexOf(myModel);
+//          can we perform binary search on linked lists?
+//          You can do it in theory, but it will be horribly inefficient,
+//          as you will have to keep iterating through the list to find the next midpoint.
+//           int location = Collections.binarySearch(models,myModel);
+        }else {
+            System.out.println("No Data to search");
+        }
+    }
+
+    private static void sortData(List<Model> models){
+        Collections.sort(models, new Comparator<Model>() {
+            public int compare(Model model1, Model model2) {
+                return model1.name.compareTo(model2.name);
+            }
+        });
+    }
+
+
+
 
       private static void readList(List<Model> models) {
           if (models.size() > 0 ) {
               models.forEach(model -> {
-                  System.out.println(model.id + model.name + model.address);
+                  System.out.println(model.id +" "+ "Model Name:"+ " "+ model.name +"Model Address:"+ " " + model.address);
               });
           } else {
               System.out.println("NO data in list");

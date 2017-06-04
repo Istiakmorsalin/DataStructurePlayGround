@@ -40,7 +40,12 @@ public class LinkedListTest {
 
     private static void removeData () {
         if (models.contains(myModel)) {
-            models.removeAll(models);
+            models.removeFirst();
+            models.removeLast();
+            models.remove(2);
+
+            //for removing all from linked list
+            //models.removeAll(models);
         } else {
             System.out.println("clearing failed due to mymodel is not here");
         }

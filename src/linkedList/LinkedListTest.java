@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class LinkedListTest {
 
-    private static List<Model> models = new LinkedList<Model>();
+    private static LinkedList<Model> models = new LinkedList<Model>();
     private static Model myModel = new Model(4,"RHTDM","India");
 
     public static void main(String args[]) {
@@ -16,7 +16,7 @@ public class LinkedListTest {
         readList(models);
         addData();
         readList(models);
-        deleteData();
+        removeData();
         readList(models);
 
      }
@@ -31,11 +31,14 @@ public class LinkedListTest {
          models.add(talKhan);
      }
 
-     private static void addData () {
+    private static void addData () {
          models.add(myModel);
+         models.addFirst(myModel);
+         models.add(3,myModel);
+         models.addLast(myModel);
      }
 
-    private static void deleteData () {
+    private static void removeData () {
         if (models.contains(myModel)) {
             models.removeAll(models);
         } else {
